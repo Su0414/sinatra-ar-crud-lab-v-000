@@ -59,7 +59,7 @@ class ApplicationController < Sinatra::Base
       @post = Post.find(params[:id])
       @post.delete
       #binding.pry
-  
+
       erb :delete
     end
 
