@@ -14,50 +14,50 @@ class ApplicationController < Sinatra::Base
 
   #CREATE Action
 
-    get '/posts/new' do
-      erb :new
-    end
+  get '/posts/new' do
+    erb :new
+  end
 
-    post '/posts' do
-      puts params
-      @post = Post.new(name: params[:name],content: params[:content])
-      @post.save
-      erb :index
-    end
+  post '/posts' do
+    puts params
+    @post = Post.new(name: params[:name],content: params[:content])
+    @post.save
+    erb :index
+  end
 
-    #READ
+  #READ
 
-    get '/posts' do
-      @posts = Post.all
-      erb :index
-    end
+  get '/posts' do
+    @posts = Post.all
+    erb :index
+  end
 
-    get "/posts/:id" do
-      @post = Post.find(params[:id])
-      erb :show
-    end
+  get "/posts/:id" do
+    @post = Post.find(params[:id])
+    erb :show
+  end
 
-    #Update
+  #Update
 
-      get "/posts/:id/edit" do
+  get "/posts/:id/edit" do
 
-        #binding.pry
-        @post = Post.find(params[:id])
-        erb :edit
-      end
+    #binding.pry
+    @post = Post.find(params[:id])
+    erb :edit
+  end
 
-      patch "/posts/:id" do
-        @post = Post.find(params[:id])
-        @post.update(name: params[:name], content: params[:content])
-        @post.save
-        erb :show
-      end
+  patch "/posts/:id" do
+    @post = Post.find(params[:id])
+    @post.update(name: params[:name], content: params[:content])
+    @post.save
+    erb :show
+  end
 
-    # DELETE
-    delete "/posts/:id/delete" do
-      @post = Post.find(params[:id])
-      @post.delete
-      erb :delete
-    end
+  # DELETE
+  delete "/posts/:id/delete" do
+    @post = Post.find(params[:id])
+    @post.delete
+    erb :delete
+  end
 
 end
